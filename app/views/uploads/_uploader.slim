@@ -1,0 +1,41 @@
+javascript:
+  $(function () {
+    $("#uploader").plupload({
+      runtimes: 'html5,flash,silverlight,html4',
+      url: '/uploads',
+      dragdrop: false,
+      rename: true,
+      sortable: false,
+      multiple_queues: true,
+      multipart_params: {
+        '#{request_forgery_protection_token}': '#{form_authenticity_token}',
+        '#{Rails.application.config.session_options[:key]}': '#{request.session_options[:id]}',
+        file_file_name: '',
+        all_tags: ''
+      },
+      init: {
+        PostInit: function (up) {
+          $('#uploader_start').text('Загрузить файлы');
+          $('#uploader_start').addClass('ui-state-disabled');
+          $('#uploader_browse').text('Добавить файлы');
+        },
+
+        FilesAdded: function (up) {
+          $.set_file_name(up);
+        },
+        FilesRemoved: function (up) {
+          $.set_file_name(up);
+        },
+        BeforeUpload: function (up, file) {
+          $.set_multipart_params(up, file);
+        },
+        FileUploaded: function (up) {
+          $('#uploader_start').addClass('ui-state-disabled');
+          $.ajax('/uploads', {
+            type: 'get',
+            dataType: 'script'
+          });
+        }
+      }
+    });
+  });

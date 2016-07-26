@@ -1,0 +1,22 @@
+ru:
+  activerecord:
+    successful:
+      messages:
+        created: Запись успешно сохранена.
+        updated: Запись успешно обновлена.
+        destroyed: Запись успешно удалена.
+    models:
+      user:
+        one: Пользователь
+        few: Пользователя
+        many: Пользователей
+        other: Пользователей
+      upload:
+        one: Загрузка
+        few: Загрузки
+        many: Загрузок
+        other: Загрузок
+    attributes:
+      upload:
+        filename: Файл
+        tags: Теги

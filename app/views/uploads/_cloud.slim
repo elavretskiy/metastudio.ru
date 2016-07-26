@@ -1,0 +1,5 @@
+.tags-cloud.glassy-bg
+  h3 Облако тегов
+  - tag_cloud policy_scope(Tag).counts, %w{css1 css2 css3 css4} do |tag, css_class|
+    = link_to tag.name, uploads_path(by_tag: tag.name), class: css_class, remote: true
+  = link_to 'Все', uploads_path, class: 'css4', remote: true

@@ -1,0 +1,23 @@
+div.row
+  div.col-xs-12
+    = simple_form_for resource, as: resource_name,
+                      url: password_path(resource_name),
+                      html: { method: :put, class: 'validate-form' } do |f|
+
+      h3.text-center Измените свой пароль
+      = f.input :reset_password_token, as: :hidden
+      = f.full_error :reset_password_token
+      .form-group
+        = f.input :password,
+                  label: 'Новый пароль',
+                  required: true,
+                  autofocus: true,
+                  input_html: { class: 'form-control' }
+      .form-group
+        = f.input :password_confirmation,
+                  label: 'Подтверждение пароля',
+                  required: true,
+                  input_html: { class: 'form-control' }
+      .form-group
+        = f.button :submit, 'Изменить пароль', class: 'btn btn-default'
+      = render 'devise/shared/links'

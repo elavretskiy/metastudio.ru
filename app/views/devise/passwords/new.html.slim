@@ -1,0 +1,15 @@
+div.row
+  div.col-xs-12
+    = simple_form_for resource, as: resource_name,
+                      url: password_path(resource_name),
+                      html: { method: :post, class: 'validate-form' } do |f|
+      h3.text-center Забыли пароль?
+      .form-group
+        = f.input :email,
+                  label: 'E-mail',
+                  required: true,
+                  autofocus: true,
+                  input_html: { class: 'form-control' }
+      .form-group
+        = f.button :submit, 'Отправить мне инструкцию', class: 'btn btn-default'
+      = render 'devise/shared/links'

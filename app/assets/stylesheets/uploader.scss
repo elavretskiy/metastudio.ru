@@ -1,0 +1,58 @@
+.plupload_filelist li {
+  background: #F5F5F5;
+}
+
+.plupload_filelist_footer {
+  height: auto;
+}
+
+.plupload_container {
+  padding: 0;
+}
+
+.file-file-name, .all-tags {
+  display: inline;
+  width: 45%;
+}
+
+.all-tags {
+  margin-left: 5px;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+.ui-widget-header .ui-state-hover {
+  border: none;
+  background: none;
+  font-weight: bold;
+}
+
+.plupload_view_list div.plupload_file_name {
+  margin-right: 150px;
+}
+
+.ui-widget-header a, .ui-widget-header a:hover {
+  color: #222222;
+}
+
+.plupload_buttons {
+  padding: 8px 0;
+}
+
+#uploads {
+  h3.uploads {
+    display: inline-block;
+  }
+
+  .pagination {
+    margin: 0 5px !important;
+  }
+}
+
+.plupload_view_list .plupload_file_size,
+.plupload_view_list .plupload_file_status,
+.plupload_filelist_footer .plupload_file_size,
+.plupload_filelist_footer .plupload_file_status {
+  width: 70px;
+}

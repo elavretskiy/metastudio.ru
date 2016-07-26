@@ -1,0 +1,18 @@
+= simple_form_for resource, as: resource_name,
+                  url: session_path(resource_name),
+                  html: { class: 'validate-form' } do |f|
+  h3.text-center Авторизация
+  .form-group
+    = f.input :email,
+              label: 'E-mail',
+              required: true,
+              autofocus: true,
+              input_html: { class: 'form-control' }
+  .form-group
+    = f.input :password,
+              label: 'Пароль',
+              required: true,
+              input_html: { class: 'form-control' }
+  .form-group
+    = f.button :submit, 'Войти', class: 'btn btn-default'
+  = render 'devise/shared/links'

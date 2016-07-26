@@ -1,0 +1,25 @@
+- model_class = Upload
+
+#uploads
+  = render 'uploads/cloud'
+
+  h3.uploads Загрузки
+  = paginate uploads, outer_window: 1, remote: true
+
+  .box
+    .box-body
+      table.table.table-striped.table-bordered.table-hover.no-wrap.datatable width='100%'
+        thead
+          tr
+            th ID
+            th= model_class.human_attribute_name(:filename)
+            th= model_class.human_attribute_name(:tags)
+        tbody
+          - uploads.each do |upload|
+              tr
+                td
+                  = upload.id
+                td
+                  = link_to upload.file.original_filename, upload.file.url, target: '_blank'
+                td
+                  = raw tag_links(upload.all_tags)

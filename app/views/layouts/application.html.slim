@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Metastudio.ru
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    .container
+      .row
+        .col-md-12
+          h3
+            = link_to 'Metastudio.ru', root_path
+            - if user_signed_in?
+              .pull-right
+                = link_to 'Выйти', destroy_user_session_path, method: :delete,
+                          data: { confirm: 'Вы уверены?' }
+        .col-md-12
+          = render 'shared/notice'
+        div class="#{params[:controller].include?('devise') ? 'col-md-6 col-md-offset-3' : 'col-md-12' }"
+          = yield
