@@ -20,6 +20,6 @@
               td
                 = upload.id
               td
-                = link_to upload.file.original_filename, upload.file.url, target: '_blank'
+                = link_to upload.filename, upload.fileurl, target: '_blank'
               td
                 = raw tag_links(upload.all_tags)

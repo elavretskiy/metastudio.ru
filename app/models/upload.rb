@@ -28,12 +28,18 @@ class Upload < ActiveRecord::Base
   scope :index, -> { order(id: :desc).includes(:tags) }
 
   def all_tags=(names)
-    self.tags = names.split(',').map do |name|
-      Tag.where(name: name.strip).first_or_create!
-    end
+    self.tags = names.split(',').map { |name| Tag.by_name(name).first_or_create! }
   end
 
   def all_tags
-    self.tags.map(&:name).join(', ')
+    tags.map(&:name).join(', ')
+  end
+
+  def filename
+    file.original_filename
+  end
+
+  def fileurl
+    file.url
   end
 end
