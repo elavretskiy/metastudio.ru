@@ -3,7 +3,6 @@ class UploadsController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   respond_to :html, :js
-
   has_scope :by_tag
 
   def index
@@ -12,16 +11,19 @@ class UploadsController < ApplicationController
   end
 
   def create
-    @upload = Upload.new
+    @upload = current_user.uploads.new
+    @upload.assign_attributes(upload_params)
     authorize @upload
-    current_user.uploads.create!(upload_params)
-    render nothing: true
+    create! do |format|
+      format.html { render nothing: true }
+      format.js { render nothing: true }
+    end
   end
 
   protected
 
   def collection
-    get_collection_ivar || set_collection_ivar(apply_scopes(policy_scope(end_of_association_chain)).order(id: :desc).includes(:tags).page(params[:page]).per(10))
+    get_collection_ivar || set_collection_ivar(apply_scopes(policy_scope(end_of_association_chain)).index.page(params[:page]).per(10))
   end
 
   private

@@ -25,6 +25,7 @@ class Upload < ActiveRecord::Base
   validates :object_id, :object_type, presence: true
 
   scope :by_tag, ->(tag) { joins(:tags).where(tags: { name: tag }) }
+  scope :index, -> { order(id: :desc).includes(:tags) }
 
   def all_tags=(names)
     self.tags = names.split(',').map do |name|
