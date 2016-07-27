@@ -15,8 +15,10 @@ $.set_file_name = (up) ->
     file = $('.plupload_content .plupload_file_name:eq(' + i + ')')
     name = up.files[i].name
     rename = name.substr(0, name.lastIndexOf('.')) || name
-    file.append '<input class="file-file-name" type="text" name="name" placeholder="Введите имя файла" data-file-number="' + i + '" value="' + rename + '">'
-    file.append '<input class="all-tags" type="text" name="all_tags" placeholder="Введите теги через запятую">'
+    if file.find('.file-file-name').length == 0
+      file.append '<input class="file-file-name" type="text" name="name" placeholder="Введите имя файла" data-file-number="' + i + '" value="' + rename + '">'
+    if file.find('.all-tags').length == 0
+      file.append '<input class="all-tags" type="text" name="all_tags" placeholder="Введите теги через запятую">'
     i++
   $.empty_fields()
 

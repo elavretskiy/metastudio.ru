@@ -17,7 +17,7 @@ class Upload < ActiveRecord::Base
   has_attached_file :file
   do_not_validate_attachment_file_type :file
 
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
   belongs_to :object, polymorphic: true

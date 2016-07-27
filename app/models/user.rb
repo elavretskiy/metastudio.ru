@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :uploads, as: :object
+  has_many :uploads, as: :object, dependent: :destroy
   has_many :tags, through: :uploads
 
   validates :email, presence: true, uniqueness: true

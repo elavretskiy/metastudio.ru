@@ -9,7 +9,7 @@
 #
 
 class Tag < ActiveRecord::Base
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :uploads, through: :taggings
 
   def self.counts
