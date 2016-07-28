@@ -2,8 +2,7 @@ class UploadsController < ApplicationController
   after_action :verify_authorized
   after_action :verify_policy_scoped, only: :index
 
-  respond_to :html, only: :index
-  respond_to :js
+  respond_to :html, :js
   has_scope :by_tag
 
   def index
@@ -18,6 +17,8 @@ class UploadsController < ApplicationController
     create! do |success, failure|
       failure.js { render json: render_errors(@upload), status: 500 }
       success.js { render nothing: true }
+      failure.html { render json: render_errors(@upload), status: 500 }
+      success.html { render nothing: true }
     end
   end
 

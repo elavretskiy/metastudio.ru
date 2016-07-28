@@ -50,7 +50,7 @@ $.set_file_rename = ->
 $.set_file_name = (up) ->
   i = 0
   while i < up.files.length
-    file = $('.plupload_content .plupload_file_name:eq(' + i + ')')
+    file = $('.plupload_content .plupload_file_name:eq(' + i + ')').not('.plupload_uploading')
     name = up.files[i].name
     rename = name.substr(0, name.lastIndexOf('.')) || name
     if file.find('.file-file-name').length == 0
@@ -76,6 +76,8 @@ $.empty_fields = ->
   $('.plupload_file_name span').hide()
   $('.plupload_done .plupload_file_name span').show()
   $('.plupload_done .plupload_file_name input').remove()
+  $('.plupload_uploading .plupload_file_name span').show()
+  $('.plupload_uploading .plupload_file_name input').remove()
   fields = $('.plupload_file_name .file-file-name')
   emptyFields = fields.filter(->
     $.trim(@value) == ''
