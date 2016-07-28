@@ -20,3 +20,6 @@ ru:
       upload:
         filename: Файл
         tags: Теги
+        file_file_name: Имя файла
+        file_content_type: Тип файла
+        file_file_size: Размер файла

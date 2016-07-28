@@ -1,3 +1,41 @@
+uploader_init = ->
+  $('#uploader').plupload
+    runtimes: 'html5,flash,silverlight,html4'
+    url: '/uploads'
+    dragdrop: false
+    rename: true
+    sortable: false
+    multiple_queues: true
+    init:
+      PostInit: (up) ->
+        $('#uploader_start').text 'Загрузить файлы'
+        $('#uploader_start').addClass 'ui-state-disabled'
+        $('#uploader_browse').text 'Добавить файлы'
+        return
+      FilesAdded: (up) ->
+        $.set_file_name up
+        return
+      FilesRemoved: (up) ->
+        $.set_file_name up
+        return
+      BeforeUpload: (up, file) ->
+        $.set_multipart_params up, file
+        return
+      FileUploaded: (up) ->
+        $('#uploader_start').addClass 'ui-state-disabled'
+        $.ajax '/uploads',
+          type: 'get'
+          dataType: 'script'
+        return
+      Error: (up, error) ->
+        $('.plupload_start').removeClass('ui-state-disabled')
+        $('#errors').replaceWith(error.response)
+        return
+  return
+
+$(document).ready uploader_init
+$(document).on 'page:load', uploader_init
+
 $.set_file_rename = ->
   files = $('#uploader').plupload('getFiles')
   i = 0

@@ -2,7 +2,8 @@ class UploadsController < ApplicationController
   after_action :verify_authorized
   after_action :verify_policy_scoped, only: :index
 
-  respond_to :html, :js
+  respond_to :html, only: :index
+  respond_to :js
   has_scope :by_tag
 
   def index
@@ -14,9 +15,9 @@ class UploadsController < ApplicationController
     @upload = current_user.uploads.new
     @upload.assign_attributes(upload_params)
     authorize @upload
-    create! do |format|
-      format.html { render nothing: true }
-      format.js { render nothing: true }
+    create! do |success, failure|
+      failure.js { render json: render_errors(@upload), status: 500 }
+      success.js { render nothing: true }
     end
   end
 
@@ -30,5 +31,10 @@ class UploadsController < ApplicationController
 
   def upload_params
     params.permit(policy(@upload).permitted_attributes)
+  end
+
+  def render_errors(object)
+    render_to_string(partial: 'shared/errors', layout: false,
+                     locals: { errors: object.errors.full_messages })
   end
 end

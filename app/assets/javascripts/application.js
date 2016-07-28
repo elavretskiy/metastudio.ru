@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require jquery.validate
 //= require jquery.validate.additional-methods
@@ -22,4 +22,5 @@
 //= require plupload.dev
 //= require plupload/i18n/ru
 //= require plupload.settings
+//= require turbolinks
 //= require_tree .

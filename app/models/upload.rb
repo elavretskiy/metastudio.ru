@@ -22,13 +22,13 @@ class Upload < ActiveRecord::Base
 
   belongs_to :object, polymorphic: true
 
-  validates :object_id, :object_type, presence: true
+  validates :object_id, :object_type, :file_file_name, presence: true
 
   scope :by_tag, ->(tag) { joins(:tags).where(tags: { name: tag }) }
   scope :index, -> { order(id: :desc).includes(:tags) }
 
   def all_tags=(names)
-    self.tags = names.split(',').map { |name| Tag.by_name(name).first_or_create! }
+    self.tags = names.split(',').reject(&:blank?).map { |name| Tag.by_name(name).first_or_create! }
   end
 
   def all_tags

@@ -17,5 +17,7 @@ html
                           data: { confirm: 'Вы уверены?' }
         .col-md-12
           = render 'shared/notice'
+        .col-md-12
+          = render 'shared/errors'
         div class="#{params[:controller].include?('devise') ? 'col-md-6 col-md-offset-3' : 'col-md-12' }"
           = yield

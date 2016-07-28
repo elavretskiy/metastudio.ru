@@ -56,3 +56,7 @@
 .plupload_filelist_footer .plupload_file_status {
   width: 70px;
 }
+
+.plupload_message.ui-state-error {
+  display: none;
+}
