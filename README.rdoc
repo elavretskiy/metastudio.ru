@@ -1,28 +1,18 @@
-== README
+== Задание
+Разработать Ruby on Rails приложение для хранения больших файлов со следующими функциями:
+* Пользователи могу зарегистрироваться и авторизоваться (email/password)
+* Авторизованные пользователи могут загружать файлы
+* Необходимо отображать прогресс загрузки с возможностью отмены
+* Пользователь обязан указать заголовок (title) для загружаемого файла
+* Файлам можно назначать тэги
+* Пользователь может просматривать свои загруженные файлы
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== Требования:
+* Разрешается использовать любые gem-ы, кроме реализации тэгов на серверной стороне.
+* Код должен быть покрыт тестами (rspec и/или cucumber).
+* Использовать Twitter Bootstrap.
+* Приложение должно работать корректно в браузерах Google Chrome и Firefox последних версий.
+* После выполнения задания нужно прислать код (либо ссылку на репозиторий на GitHub или другой открытый репозиторий) по адресу hr@metastudio.ru, указав свои контактные данные и количество потраченного на задание времени.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== Рекомендуемые библиотеки:
+devise, сarrierwave, plupload, simple_form.
