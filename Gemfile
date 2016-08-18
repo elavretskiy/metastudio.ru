@@ -69,3 +69,12 @@ group :development do
   gem 'bullet'
 end
 
+
+group :production do
+  gem 'rails_12factor'
+  gem 'heroku_rails_deflate'
+  gem 'mailgunner'
+end
+
+ruby '2.2.3'
+
